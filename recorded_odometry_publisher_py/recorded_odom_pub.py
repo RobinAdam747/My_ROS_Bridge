@@ -49,7 +49,7 @@ class OdometryNode(Node):
 
     def publish_odometry(self):
         # Read in csv of recorded odometry
-        odomData = pd.read_csv("recorded_odometry_publisher_py/Bags/RosAria-pose.csv")
+        odomData = pd.read_csv("recorded_odometry_publisher_py/Bags/Odometry/RosAria-pose.csv")
 
         # Define message type
         msg = Odometry()
@@ -80,6 +80,7 @@ class OdometryNode(Node):
         msg.twist.twist.angular.y = odomData.at[1, "twist.twist.angular.y"]
         msg.twist.twist.angular.x = odomData.at[1, "twist.twist.angular.x"]
         msg.twist.twist.angular.z = odomData.at[1, "twist.twist.angular.z"]
+        msg.twist.covariance = odomData.at[1, "twist.covariance"]
         
         self.odometry_publisher_.publish(msg)   # ROS publish method
 
