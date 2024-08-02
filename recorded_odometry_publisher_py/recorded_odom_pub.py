@@ -57,26 +57,29 @@ class OdometryNode(Node):
         # Assign data to the message per column
         msg.header.frame_id = odomData.at[1, "header.frame_id"]
 
-        time = odomData.at[1, "Time"]
-        secs = int(time)
-        nanosecs = int((time - secs) * 10000000)     # hardcoded solution oof
-        msg.header.stamp.sec = secs
-        msg.header.stamp.nanosec = nanosecs
-
+        # time = odomData.at[1, "Time"]
+        # secs = int(time)
+        # nanosecs = int((time - secs) * 10000000)     # hardcoded solution oof
+        # msg.header.stamp.sec = secs
+        # msg.header.stamp.nanosec = nanosecs
+        msg.header.stamp.sec = odomData.at[1, "header.stamp.secs"]
+        msg.header.stamp.nanosec = odomData.at[1, "header.stamp.nsecs"]
+        msg.header.frame_id = odomData.at[1, "header.frame_id"]
         msg.child_frame_id = odomData.at[1, "child_frame_id"]
-        msg.pose.pose.orientation.w = odomData.at[1, "orientation.w"]
-        msg.pose.pose.orientation.x = odomData.at[1, "orientation.x"]
-        msg.pose.pose.orientation.y = odomData.at[1, "orientation.y"]
-        msg.pose.pose.orientation.z = odomData.at[1, "orientation.z"]
-        msg.pose.pose.position.x = odomData.at[1, "pose.x"]
-        msg.pose.pose.position.y = odomData.at[1, "pose.x"]
-        msg.pose.pose.position.z = odomData.at[1, "pose.z"]
-        msg.twist.twist.linear.y = odomData.at[1, "linear.y"]
-        msg.twist.twist.linear.z = odomData.at[1, "linear.y"]
-        msg.twist.twist.linear.x = odomData.at[1, "linear.z"]
-        msg.twist.twist.angular.y = odomData.at[1, "angular.y"]
-        msg.twist.twist.angular.x = odomData.at[1, "angular.x"]
-        msg.twist.twist.angular.z = odomData.at[1, "angular.z"]
+        msg.pose.pose.orientation.w = odomData.at[1, "pose.pose.orientation.w"]
+        msg.pose.pose.orientation.x = odomData.at[1, "pose.pose.orientation.x"]
+        msg.pose.pose.orientation.y = odomData.at[1, "pose.pose.orientation.y"]
+        msg.pose.pose.orientation.z = odomData.at[1, "pose.pose.orientation.z"]
+        msg.pose.pose.position.x = odomData.at[1, "pose.pose.position.x"]
+        msg.pose.pose.position.y = odomData.at[1, "pose.pose.position.x"]
+        msg.pose.pose.position.z = odomData.at[1, "pose.pose.position.z"]
+        msg.pose.covariance = odomData.at[1, "pose.covariance"]
+        msg.twist.twist.linear.y = odomData.at[1, "twist.twist.linear.y"]
+        msg.twist.twist.linear.z = odomData.at[1, "twist.twist.linear.y"]
+        msg.twist.twist.linear.x = odomData.at[1, "twist.twist.linear.z"]
+        msg.twist.twist.angular.y = odomData.at[1, "twist.twist.angular.y"]
+        msg.twist.twist.angular.x = odomData.at[1, "twist.twist.angular.x"]
+        msg.twist.twist.angular.z = odomData.at[1, "twist.twist.angular.z"]
         
         self.odometry_publisher_.publish(msg)   # ROS publish method
 
