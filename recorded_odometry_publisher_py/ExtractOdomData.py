@@ -3,11 +3,11 @@ from bagpy import bagreader # BagReader is the utility to extract the csv from t
 import pandas as pd
 
 # Create a bagreader object
-b = bagreader("Odometry.bag")
+b = bagreader(bagfile="Bags/Odometry.bag")
 # b.topic_table
 
 # Extract the odometry messages
-odometryMsgs = b.odometry_data()
+odometryMsgs = b.message_by_topic(topic="/RosAria/pose")
 # odometryMsgs
 
 # Create csv of the odometry messages
