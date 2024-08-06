@@ -82,6 +82,8 @@ class OdometryNode(Node):
         msg.twist.twist.angular.z = odomData.at[1, "twist.twist.angular.z"]
         # msg.twist.covariance = odomData.at[1, "twist.covariance"]
     
+        # Only publish new Odometry (INCOMPLETE)
+        #if 
         self.odometry_publisher_.publish(msg)   # ROS publish method
 
 def main(args=None):
