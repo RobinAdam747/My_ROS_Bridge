@@ -1,15 +1,12 @@
 #!/usr/bin/env python3
 from numpy import int32, uint32
-
 import rclpy
 from rclpy.node import Node
-
 from example_interfaces.msg import Int64    # interface type
 import random   # for generating random numbers for the simulated temperaature sensor
-
 from nav_msgs.msg import Odometry
-
 import pandas as pd
+import time
 
 # class TemperatureSensorNode(Node):
 #     def __init__(self):
@@ -43,13 +40,23 @@ class OdometryNode(Node):
             Odometry, "pose", 10)
         
         # Timer to set publish frequency
-        self.odometry_timer_ = self.create_timer( 1.0, self.publish_odometry)
+        self.odometry_timer_ = self.create_timer(1.0, self.publish_odometry)
 
         # Publish on trigger...
 
     def publish_odometry(self):
-        # Read in csv of recorded odometry
-        odomData = pd.read_csv("recorded_odometry_publisher_py/Bags/Odometry/RosAria-pose.csv")
+
+        # Making sure the node is not going to stop if it doesn't find data on startup
+        file_read_success = False
+
+        while not file_read_success:
+            try:
+                # Read in csv of recorded odometry
+                odomData = pd.read_csv("recorded_odometry_publisher_py/Bags/Odometry/RosAria-pose.csv")
+                file_read_success = True    # Loop exit once Odometry found
+            except FileNotFoundError:
+                print("Odometry not found yet. Retrying...")
+                time.sleep(1)   # Try again in 1 second
 
         # Define message type
         msg = Odometry()
@@ -74,7 +81,7 @@ class OdometryNode(Node):
         msg.twist.twist.angular.x = odomData.at[1, "twist.twist.angular.x"]
         msg.twist.twist.angular.z = odomData.at[1, "twist.twist.angular.z"]
         # msg.twist.covariance = odomData.at[1, "twist.covariance"]
-        
+    
         self.odometry_publisher_.publish(msg)   # ROS publish method
 
 def main(args=None):
