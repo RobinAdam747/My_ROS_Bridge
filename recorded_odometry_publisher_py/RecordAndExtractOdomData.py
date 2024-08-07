@@ -9,7 +9,10 @@ import time
 
 def start_recording(bag_name):
     # Start recording a ROS bag
-    return subprocess.Popen(['rosbag', 'record', '-O', bag_name, '/topic1', '/topic2'])
+    # RooiBot:
+    return subprocess.Popen(['rosbag', 'record', '-O', bag_name, '/RosAria/pose'])
+    # Husky:
+    # return subprocess.Popen(['rosbag', 'record', '-O', bag_name, '/husky_velocity_controller/odom'])
 
 def stop_recording(process):
     # Stop recording the ROS bag
@@ -17,11 +20,11 @@ def stop_recording(process):
     process.wait()
 
 def main():
-    interval = 10  # Time in seconds to record
-    bag_counter = 0
+    interval = 0.1  # Time in seconds to record
+    # bag_counter = 0
 
     while True:
-        bag_name = f'recording_{bag_counter}.bag'
+        bag_name = "Odometry.bag"
         print(f"Starting recording: {bag_name}")
         process = start_recording(bag_name)
         
@@ -31,7 +34,7 @@ def main():
         stop_recording(process)
         
         bag_counter += 1
-        time.sleep(5)  # Wait before starting the next recording
+        time.sleep(1)  # Wait before starting the next recording
 
         # Create a bagreader object
         b = bagreader(bagfile="Bags/Odometry.bag")
