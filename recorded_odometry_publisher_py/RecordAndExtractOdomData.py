@@ -34,7 +34,7 @@ def main():
         stop_recording(process)
         
         bag_counter += 1
-        time.sleep(1)  # Wait before starting the next recording
+        # time.sleep(1)  # Wait before starting the next recording
 
         # Create a bagreader object
         b = bagreader(bagfile="Bags/Odometry.bag")
