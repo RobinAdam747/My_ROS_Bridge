@@ -39,17 +39,19 @@ EOF
 # Main loop
 while true; do
 
-	fetch_file_from_ftp
-        echo "File fetched. Deleting the file on the server..."
-    
-    if file_exists_on_ftp; then
-        echo "File exists. Fetching the file..."
         fetch_file_from_ftp
         echo "File fetched. Deleting the file on the server..."
         delete_file_from_ftp
         echo "File deleted on the server."
-    else
-        echo "File does not exist. Waiting..."
-    fi
+    
+#    if file_exists_on_ftp; then
+#        echo "File exists. Fetching the file..."
+#        fetch_file_from_ftp
+#        echo "File fetched. Deleting the file on the server..."
+#        delete_file_from_ftp
+#        echo "File deleted on the server."
+#    else
+#        echo "File does not exist. Waiting..."
+#    fi
     sleep 0.1  # Wait for 0.1 second before checking again
 done
