@@ -60,11 +60,18 @@ def main(server, username, password, remote_file_path, local_file_path):
             # Close the connection
             ftp.quit()
 
-# Example usage
-server = 'ftp.example.com'
-username = 'your_username'
-password = 'your_password'
-remote_file_path = '/path/to/your/remote_file.txt'
-local_file_path = 'local_file.txt'
+# RooiBot details
+server = '192.168.1.33'
+username = 'noeticpioneer'
+password = 'esl'
+remote_file_path = '/home/esl/My_ROS_Bridge/recorded_odometry_publisher_py/Bags/Odometry/RosAria-pose.csv'
+local_file_path = '/home/colcon_ws/src/My_ROS_Bridge/recorded_odometry_publisher_py/Bags/Odometry/RosAria-pose.csv'
+
+# Husky details
+# server = '' # Add the Husky's IP address (of the Jetson or other OBC)
+# username = 'administrator'
+# password = 'clearpath'
+# remote_file_path = '/home/administrator/My_ROS_Bridge/recorded_odometry_publisher_py/Bags/Odometry/RosAria-pose.csv'    # Check the path on the Husky
+# local_file_path = '/home/esl/My_ROS_Bridge/recorded_odometry_publisher_py/Bags/Odometry/RosAria-pose.csv'   # Check the path on the NUC
 
 main(server, username, password, remote_file_path, local_file_path)
