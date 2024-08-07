@@ -83,7 +83,10 @@ class OdometryNode(Node):
         # msg.twist.covariance = odomData.at[1, "twist.covariance"]
     
         # Only publish new Odometry (INCOMPLETE)
-        #if 
+        # if msg.header.stamp.sec != self.last_odom_time:
+            # self.last_odom_time = msg.header
+
+            
         self.odometry_publisher_.publish(msg)   # ROS publish method
 
 def main(args=None):
