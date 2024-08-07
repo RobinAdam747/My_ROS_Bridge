@@ -33,7 +33,7 @@ def main():
         print(f"Stopping recording: {bag_name}")
         stop_recording(process)
         
-        bag_counter += 1
+        # bag_counter += 1
         # time.sleep(1)  # Wait before starting the next recording
 
         # Create a bagreader object
