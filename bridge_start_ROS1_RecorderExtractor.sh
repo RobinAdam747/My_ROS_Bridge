@@ -12,5 +12,5 @@ while true; do
 	pkill -f "rosbag record -O Odometry.bag /RosAria/pose"
 
 	# Run recorder-extractor script:
-	python /home/esl/My_ROS_Bridge/recorded_odometry_publisher_py/RecordAndExtractOdomData.py
+	python3 /home/esl/My_ROS_Bridge/recorded_odometry_publisher_py/RecordAndExtractOdomData.py
 done
