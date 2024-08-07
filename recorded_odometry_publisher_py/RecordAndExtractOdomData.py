@@ -22,7 +22,7 @@ def stop_recording(process):
 def main():
 
     # Create a bagreader object
-    b = bagreader(bagfile="Bags/Odometry.bag")
+    b = bagreader(bagfile="Odometry.bag")
 
     # Extract the odometry messages 
     odometryMsgs = b.message_by_topic(topic="/RosAria/pose")
