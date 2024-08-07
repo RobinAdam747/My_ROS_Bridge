@@ -52,7 +52,7 @@ class OdometryNode(Node):
         while not file_read_success:
             try:
                 # Read in csv of recorded odometry
-                odomData = pd.read_csv("recorded_odometry_publisher_py/Bags/Odometry/RosAria-pose.csv")
+                odomData = pd.read_csv("/home/esl/colcon_ws/src/My_ROS_Bridge/RosAria-pose.csv")
                 file_read_success = True    # Loop exit once Odometry found
             except FileNotFoundError:
                 print("Odometry not found yet. Retrying...")
