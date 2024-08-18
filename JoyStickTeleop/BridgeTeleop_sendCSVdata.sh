@@ -3,10 +3,10 @@
 # Define variables
 CSV_FILE="~/esl/colcon_ws/src/My_ROS_Bridge/JoyStickTeleop/joy.csv"
 TOPIC="/joy"
-INTERVAL=10  # Interval in seconds for overwriting and sending the CSV file
+INTERVAL=1  # Interval in seconds for sending the CSV file
 
 # FTP server details
-FTP_SERVER=""  # IP of the FTP server
+FTP_SERVER="192.168.1.100"  # IP of the FTP server
 FTP_USERNAME="administrator"     
 FTP_PASSWORD="clearpath"     
 FTP_DEST_DIR="~/administrator/My_ROS_Bridge/JoyStickTeleop/"  # destination directory on the FTP server
@@ -17,14 +17,23 @@ write_header() {
 }
 
 # Function to send CSV file to FTP server
+# send_to_ftp() {
+#     echo "Sending CSV file to FTP server..."
+#     curl -T $CSV_FILE ftp://$FTP_USERNAME:$FTP_PASSWORD@$FTP_SERVER$FTP_DEST_DIR/
+#     if [ $? -eq 0 ]; then
+#         echo "CSV file sent successfully to FTP server."
+#     else
+#         echo "Failed to send CSV file to FTP server."
+#     fi
+# }
+
+# Function to send the file to the FTP server
 send_to_ftp() {
-    echo "Sending CSV file to FTP server..."
-    curl -T $CSV_FILE ftp://$FTP_USERNAME:$FTP_PASSWORD@$FTP_SERVER$FTP_DEST_DIR/
-    if [ $? -eq 0 ]; then
-        echo "CSV file sent successfully to FTP server."
-    else
-        echo "Failed to send CSV file to FTP server."
-    fi
+    ftp -inv $FTP_SERVER <<EOF
+user $FTP_USERNAME $FTP_PASSWORD
+send $FTP_DEST_DIR $CSV_FILE
+bye
+EOF
 }
 
 # Main loop
