@@ -56,30 +56,30 @@ class OdometryNode(Node):
                 file_read_success = True    # Loop exit once Odometry found
             except FileNotFoundError:
                 print("Odometry not found yet. Retrying...")
-                time.sleep(1)   # Try again in 1 second
+                time.sleep(0.1)   # Try again in 100 milliseconds
 
         # Define message type
         msg = Odometry()
 
         # Assign data to the message per column
-        msg.header.frame_id = odomData.at[1, "header.frame_id"]
-        msg.header.stamp.sec = int(odomData.at[1, "header.stamp.secs"])
-        msg.header.stamp.nanosec = int(odomData.at[1, "header.stamp.nsecs"])
-        msg.child_frame_id = odomData.at[1, "child_frame_id"]
-        msg.pose.pose.orientation.w = odomData.at[1, "pose.pose.orientation.w"]
-        msg.pose.pose.orientation.x = odomData.at[1, "pose.pose.orientation.x"]
-        msg.pose.pose.orientation.y = odomData.at[1, "pose.pose.orientation.y"]
-        msg.pose.pose.orientation.z = odomData.at[1, "pose.pose.orientation.z"]
-        msg.pose.pose.position.x = odomData.at[1, "pose.pose.position.x"]
-        msg.pose.pose.position.y = odomData.at[1, "pose.pose.position.x"]
-        msg.pose.pose.position.z = odomData.at[1, "pose.pose.position.z"]
+        msg.header.frame_id = odomData.at[0, "header.frame_id"]
+        msg.header.stamp.sec = int(odomData.at[0, "header.stamp.secs"])
+        msg.header.stamp.nanosec = int(odomData.at[0, "header.stamp.nsecs"])
+        msg.child_frame_id = odomData.at[0, "child_frame_id"]
+        msg.pose.pose.orientation.w = odomData.at[0, "pose.pose.orientation.w"]
+        msg.pose.pose.orientation.x = odomData.at[0, "pose.pose.orientation.x"]
+        msg.pose.pose.orientation.y = odomData.at[0, "pose.pose.orientation.y"]
+        msg.pose.pose.orientation.z = odomData.at[0, "pose.pose.orientation.z"]
+        msg.pose.pose.position.x = odomData.at[0, "pose.pose.position.x"]
+        msg.pose.pose.position.y = odomData.at[0, "pose.pose.position.x"]
+        msg.pose.pose.position.z = odomData.at[0, "pose.pose.position.z"]
         # msg.pose.covariance = odomData.at[1, "pose.covariance"]
-        msg.twist.twist.linear.y = odomData.at[1, "twist.twist.linear.y"]
-        msg.twist.twist.linear.z = odomData.at[1, "twist.twist.linear.y"]
-        msg.twist.twist.linear.x = odomData.at[1, "twist.twist.linear.z"]
-        msg.twist.twist.angular.y = odomData.at[1, "twist.twist.angular.y"]
-        msg.twist.twist.angular.x = odomData.at[1, "twist.twist.angular.x"]
-        msg.twist.twist.angular.z = odomData.at[1, "twist.twist.angular.z"]
+        msg.twist.twist.linear.y = odomData.at[0, "twist.twist.linear.y"]
+        msg.twist.twist.linear.z = odomData.at[0, "twist.twist.linear.y"]
+        msg.twist.twist.linear.x = odomData.at[0, "twist.twist.linear.z"]
+        msg.twist.twist.angular.y = odomData.at[0, "twist.twist.angular.y"]
+        msg.twist.twist.angular.x = odomData.at[0, "twist.twist.angular.x"]
+        msg.twist.twist.angular.z = odomData.at[0, "twist.twist.angular.z"]
         # msg.twist.covariance = odomData.at[1, "twist.covariance"]
     
         # Only publish new Odometry (INCOMPLETE)
