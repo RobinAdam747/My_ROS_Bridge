@@ -58,10 +58,10 @@ def csv_publisher():
                         rate.sleep()
             
             except FileNotFoundError:
-                rospy.logwarn(f"CSV file not found: {csv_file_path}. Retrying...")
+                rospy.logwarn("CSV file not found, retrying...")
                 rate.sleep()
             except Exception as e:
-                rospy.logerr(f"Error reading CSV file: {e}")
+                rospy.logerr("Error reading CSV file")
                 rate.sleep()
 
 if __name__ == '__main__':
