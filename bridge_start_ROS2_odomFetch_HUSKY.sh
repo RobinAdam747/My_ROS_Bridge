@@ -2,13 +2,6 @@
 # Startup of bridge (ROS2)
 #python3 /home/esl/colcon_ws/src/My_ROS_Bridge/recorded_odometry_publisher_py/FTPinteraction.py
 
-# Rooibot FTP server details
-SERVER="192.168.1.33"
-USERNAME="noeticpioneer"
-PASSWORD="esl"
-REMOTE_FILE_PATH="/home/noeticpioneer/My_ROS_Bridge/Odometry/RosAria-pose.csv"
-LOCAL_FILE_PATH="RosAria-pose.csv"
-
 # Husky FTP server details
 SERVER=""
 USERNAME="administrator"
