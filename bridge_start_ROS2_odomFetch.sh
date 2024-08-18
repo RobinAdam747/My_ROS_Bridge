@@ -9,13 +9,6 @@ PASSWORD="esl"
 REMOTE_FILE_PATH="/home/noeticpioneer/My_ROS_Bridge/Odometry/RosAria-pose.csv"
 LOCAL_FILE_PATH="RosAria-pose.csv"
 
-# Husky FTP server details
-SERVER=""
-USERNAME="administrator"
-PASSWORD="clearpath"
-REMOTE_FILE_PATH="/home/administrator/My_ROS_Bridge/Odometry/.csv" # CHECK FILE NAME
-LOCAL_FILE_PATH=".csv"
-
 # Function to check if a file exists on the FTP server
 file_exists_on_ftp() {
     ftp -inv $SERVER <<EOF | grep -q "226 Transfer complete"
