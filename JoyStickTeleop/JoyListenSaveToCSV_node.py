@@ -10,7 +10,7 @@ from threading import Timer
 csv_file_path = 'joy.csv' 
 
 # Define the interval for overwriting the CSV file (in seconds)
-overwrite_interval = 1
+overwrite_interval = 5
 
 class JoySubscriber(Node):
 
