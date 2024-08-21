@@ -1,15 +1,15 @@
 #!/bin/bash
 
 # Define variables
-CSV_FILE="~/esl/colcon_ws/src/My_ROS_Bridge/JoyStickTeleop/joy.csv"
+CSV_FILE="/home/esl/colcon_ws/src/My_ROS_Bridge/JoyStickTeleop/joy.csv"
 TOPIC="/joy"
-INTERVAL=1  # Interval in seconds for sending the CSV file
+INTERVAL=0.1  # Interval in seconds for sending the CSV file
 
 # FTP server details
 FTP_SERVER="192.168.1.100"  # IP of the FTP server
 FTP_USERNAME="administrator"     
 FTP_PASSWORD="clearpath"     
-FTP_DEST_DIR="~/administrator/My_ROS_Bridge/JoyStickTeleop/"  # destination directory on the FTP server
+FTP_DEST_DIR="/home/administrator/My_ROS_Bridge/JoyStickTeleop/joy.csv"  # destination directory on the FTP server
 
 # Function to write header to CSV file
 write_header() {
@@ -31,7 +31,7 @@ write_header() {
 send_to_ftp() {
     ftp -inv $FTP_SERVER <<EOF
 user $FTP_USERNAME $FTP_PASSWORD
-send $FTP_DEST_DIR $CSV_FILE
+put $CSV_FILE $FTP_DEST_DIR 
 bye
 EOF
 }
