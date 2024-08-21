@@ -9,7 +9,7 @@ def csv_publisher():
     rospy.init_node('joy_from_ROS2_publisher', anonymous=True)
     
     # Create a publisher object to publish to the Husky's joy topic
-    pub = rospy.Publisher('/joy_teleop/joy', Joy, queue_size=10)
+    pub = rospy.Publisher('/joy_data_from_ROS2', Joy, queue_size=10)
     
     # Set the rate at which to publish messages
     rate = rospy.Rate(0.1)  # 10 Hz
