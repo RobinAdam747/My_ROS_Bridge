@@ -6,7 +6,8 @@
 SERVER="192.168.1.33"
 USERNAME="noeticpioneer"
 PASSWORD="esl"
-REMOTE_FILE_PATH="/home/noeticpioneer/My_ROS_Bridge/RosAria-pose.csv"
+REMOTE_FILE_PATH="/home/noeticpioneer/My_ROS_Bridge/Odometry/RosAria-pose.csv"
+REMOTE_FOLDER_PATH="/home/noeticpioneer/My_ROS_Bridge/Odometry"
 LOCAL_FILE_PATH="RosAria-pose.csv"
 
 # Function to check if a file exists on the FTP server
@@ -31,7 +32,7 @@ EOF
 delete_file_from_ftp() {
     ftp -inv $SERVER <<EOF
 user $USERNAME $PASSWORD
-delete $REMOTE_FILE_PATH
+rmdir $REMOTE_FOLDER_PATH
 bye
 EOF
 }
@@ -53,5 +54,5 @@ while true; do
 #    else
 #        echo "File does not exist. Waiting..."
 #    fi
-    sleep 0.1  # Wait for 0.1 second before checking again
+    sleep 0.8  # Wait for 0.1 second before checking again
 done
