@@ -42,8 +42,6 @@ class OdometryNode(Node):
         # Timer to set publish frequency
         self.odometry_timer_ = self.create_timer(1.0, self.publish_odometry)
 
-        # Publish on trigger...
-
     def publish_odometry(self):
 
         # Making sure the node is not going to stop if it doesn't find data on startup
