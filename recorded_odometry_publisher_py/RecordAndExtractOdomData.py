@@ -5,13 +5,15 @@ import pandas as pd
 def main():
 
     # Create a bagreader object
-    b = bagreader(bagfile="Odometry.bag")
+    b = bagreader(bagfile="OdometryAndTF.bag")
 
-    # Extract the odometry messages 
+    # Extract the odometry and transform messages 
     odometryMsgs = b.message_by_topic(topic="/RosAria/pose")
+    tfMsgs = b.message_by_topic(topic="/tf")
 
-    # Create csv of the odometry messages
+    # Create csv's of the odometry and transform messages
     odometryData = pd.read_csv(odometryMsgs[0])
+    tfData = pd.read_csv(tfMsgs[0])
 
 if __name__ == "__main__":
     main()
