@@ -41,15 +41,15 @@ def csv_publisher():
                         # Create a Joy message
                         joy_msg = Joy()
                         
-                        # Assuming the CSV has columns for axes and buttons
-                        # Example: axes1, axes2, ..., button1, button2, ...
-                        # Modify the following lines according to your CSV structure
-                        
+                        # Populate the header with timestamp and frame_id
+                        joy_msg.header.stamp = rospy.Time.from_sec(float(row[0]))
+                        joy_msg.header.frame_id = row[1]
+
                         # Convert the first N columns to axes (floats)
-                        joy_msg.axes = [float(value) for value in row[:8]]
+                        joy_msg.axes = [float(value) for value in row[2:9]]
                         
                         # Convert the remaining columns to buttons (integers)
-                        joy_msg.buttons = [int(value) for value in row[8:]]
+                        joy_msg.buttons = [int(value) for value in row[10:24]]
                         
                         # Publish the message
                         pub.publish(joy_msg)

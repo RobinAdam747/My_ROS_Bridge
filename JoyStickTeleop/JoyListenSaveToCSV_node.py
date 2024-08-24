@@ -34,7 +34,7 @@ class JoySubscriber(Node):
         with open(csv_file_path, 'w') as csvfile:
             csvwriter = csv.writer(csvfile)
             # Write the header row (modify according to your message structure)
-            header = ['axes_{}'.format(i) for i in range(8)] + ['button_{}'.format(i) for i in range(11)]
+            header = ['timestamp', 'frame_id'] + ['axes_{}'.format(i) for i in range(8)] + ['button_{}'.format(i) for i in range(15)]
             csvwriter.writerow(header)
 
     def listener_callback(self, msg):
@@ -44,7 +44,9 @@ class JoySubscriber(Node):
             
             # Write the message data to the CSV file
             # Flatten the axes and buttons arrays into a single row
-            row = list(msg.axes) + list(msg.buttons)
+            timestamp = msg.header.stamp.sec + msg.header.stamp.nanosec * 1e-9
+            frame_id = msg.header.frame_id
+            row = [timestamp, frame_id] + list(msg.axes) + list(msg.buttons)
             csvwriter.writerow(row)
 
     def periodic_overwrite(self):
