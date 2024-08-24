@@ -7,10 +7,10 @@ import csv
 from threading import Timer
 
 # Define the CSV file path
-csv_file_path = 'joy.csv' 
+csv_file_path = '/home/esl/colcon_ws/src/My_ROS_Bridge/JoyStickTeleop/joy.csv' 
 
 # Define the interval for overwriting the CSV file (in seconds)
-overwrite_interval = 5
+overwrite_interval = 0.4
 
 class JoySubscriber(Node):
 
