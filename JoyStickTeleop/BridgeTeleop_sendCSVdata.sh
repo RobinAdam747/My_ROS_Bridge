@@ -2,7 +2,7 @@
 
 # Define variables
 CSV_FILE="/home/esl/colcon_ws/src/My_ROS_Bridge/JoyStickTeleop/joy.csv"
-INTERVAL=0.1  # Interval in seconds for sending the CSV file
+INTERVAL=0.5  # Interval in seconds for sending the CSV file
 
 # FTP server details
 FTP_SERVER="192.168.1.33"  # IP of the FTP server

@@ -3,6 +3,7 @@
 import rospy
 import csv
 from sensor_msgs.msg import Joy
+import time
 
 def csv_publisher():
     # Initialize the ROS node
@@ -12,7 +13,8 @@ def csv_publisher():
     pub = rospy.Publisher('/joy_data_from_ROS2', Joy, queue_size=10)
     
     # Set the rate at which to publish messages
-    rate = rospy.Rate(0.1)  # 10 Hz
+    # rate = rospy.Rate(0.1)  # 10 Hz
+    publish_interval = 1    # 1 Hz
     
     # Path to the CSV file
     csv_file_path = '/home/noeticpioneer/My_ROS_Bridge/JoyStickTeleop/joy.csv'
@@ -55,7 +57,8 @@ def csv_publisher():
                         pub.publish(joy_msg)
                         
                         # Sleep to maintain the loop rate
-                        rate.sleep()
+                        # rate.sleep()
+                        time.sleep(publish_interval)
             
             except FileNotFoundError:
                 rospy.logwarn("CSV file not found, retrying...")
