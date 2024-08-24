@@ -14,7 +14,7 @@ class JoyDataPublisher:
         self.pub = rospy.Publisher('/joy_data_from_ROS2', Joy, queue_size=10)
         
         # Set up a timer to call the callback function at the desired rate
-        publish_interval = 1  # 1 Hz
+        publish_interval = 0.1  # 1 Hz
         rospy.Timer(rospy.Duration(publish_interval), self.timer_callback)
         
         # Keep the node running
