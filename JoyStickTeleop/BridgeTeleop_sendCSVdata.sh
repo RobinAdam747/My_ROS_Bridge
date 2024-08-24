@@ -8,7 +8,7 @@ INTERVAL=0.1  # Interval in seconds for sending the CSV file
 FTP_SERVER="192.168.1.33"  # IP of the FTP server
 FTP_USERNAME="noeticpioneer"     
 FTP_PASSWORD="esl"     
-FTP_DEST_DIR="/home/esl/My_ROS_Bridge/JoyStickTeleop/joy.csv"  # destination directory on the FTP server
+FTP_DEST_DIR="/home/noeticpioneer/My_ROS_Bridge/JoyStickTeleop/joy.csv"  # destination directory on the FTP server
 
 # Function to send the file to the FTP server
 send_to_ftp() {
