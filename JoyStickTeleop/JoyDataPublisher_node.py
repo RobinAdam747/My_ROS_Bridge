@@ -15,7 +15,7 @@ def csv_publisher():
     rate = rospy.Rate(0.1)  # 10 Hz
     
     # Path to the CSV file
-    csv_file_path = 'joy.csv'
+    csv_file_path = '/home/noeticpioneer/My_ROS_Bridge/JoyStickTeleop/joy.csv'
 
     # Making sure the node is not going to stop if it doesn't find data on startup
     file_read_success = False
