@@ -13,6 +13,7 @@
             <geometry>
                 <box size="0.5 0.5 0.1" />
             </geometry>
+            <material name="red" />
         </visual>
     </link>
 
@@ -22,6 +23,7 @@
             <geometry>
                 <cylinder length="0.1" radius="0.05" />
             </geometry>
+            <material name="black" />
         </visual>
     </link>
 
@@ -30,6 +32,7 @@
             <geometry>
                 <cylinder length="0.1" radius="0.05" />
             </geometry>
+            <material name="black" />
         </visual>
     </link>
 
@@ -38,6 +41,7 @@
             <geometry>
                 <cylinder length="0.1" radius="0.05" />
             </geometry>
+            <material name="black" />
         </visual>
     </link>
 
@@ -46,6 +50,7 @@
             <geometry>
                 <cylinder length="0.1" radius="0.05" />
             </geometry>
+            <material name="black" />
         </visual>
     </link>
 
