@@ -1,0 +1,13 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <!-- Define red material -->
+    <xacro:property name="red" value="0.8 0.1 0.1 1" />
+    <material name="red">
+        <color rgba="${red}" />
+    </material>
+
+    <!-- Define black material -->
+    <xacro:property name="black" value="0 0 0 1" />
+    <material name="black">
+        <color rgba="${black}" />
+    </material>
+</robot>
