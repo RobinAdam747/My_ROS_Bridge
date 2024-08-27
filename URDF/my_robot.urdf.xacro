@@ -50,10 +50,10 @@
     </link>
 
     <!-- Define the joints -->
-    <joint name="joint1" type="fixed">
-        <parent link="base_link" />
-        <child link="wheel1" />
-        <origin xyz="0.25 0.25 0" rpy="0 0 0" />
+    <joint name="world_to_base" type="fixed">
+        <parent link="world" />
+        <child link="base_link" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
     </joint>
 
     <joint name="joint2" type="fixed">
