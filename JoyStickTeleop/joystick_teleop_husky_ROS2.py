@@ -6,18 +6,20 @@ class JoyMessageForwarder(Node):
     def __init__(self):
         super().__init__('joy_message_forwarder')
 
-        # Cheack if the source topic exists
+        # Check if the source topic exists
         self.wait_for_topic('/joy')
 
+        # Check if the destination topic exists
+        self.wait_for_topic('/a200_1057/joy_teleop/joy')
+
+        # Create the subscription after ensuring the source topic exists
         self.subscription = self.create_subscription(
             Joy,  # The message type is Joy
             '/joy',  # Replace with your source topic
             self.listener_callback,
             10)
-        
-        # Check if the destination topic exists
-        self.wait_for_topic('/a200_1057/joy_teleop/joy')
 
+        # Create the publisher after ensuring the destination topic exists
         self.publisher = self.create_publisher(
             Joy,  # The message type is Joy
             '/a200_1057/joy_teleop/joy',  # Replace with your destination topic
