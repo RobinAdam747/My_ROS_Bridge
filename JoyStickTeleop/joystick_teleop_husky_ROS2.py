@@ -5,15 +5,36 @@ from sensor_msgs.msg import Joy
 class JoyMessageForwarder(Node):
     def __init__(self):
         super().__init__('joy_message_forwarder')
+
+        # Cheack if the source topic exists
+        self.wait_for_topic('/joy')
+
         self.subscription = self.create_subscription(
             Joy,  # The message type is Joy
             '/joy',  # Replace with your source topic
             self.listener_callback,
             10)
+        
+        # Check if the destination topic exists
+        self.wait_for_topic('/a200_1057/joy_teleop/joy')
+
         self.publisher = self.create_publisher(
             Joy,  # The message type is Joy
             '/a200_1057/joy_teleop/joy',  # Replace with your destination topic
             10)
+
+    def wait_for_topic(self, topic_name):
+        self.get_logger().info(f'Waiting for topic {topic_name} to be available...')
+        while not self.topic_exists(topic_name):
+            rclpy.spin_once(self, timeout_sec=1.0)
+        self.get_logger().info(f'Topic {topic_name} is now available.')
+
+    def topic_exists(self, topic_name):
+        topic_list = self.get_topic_names_and_types()
+        for topic in topic_list:
+            if topic_name in topic:
+                return True
+        return False
 
     def listener_callback(self, msg):
         self.publisher.publish(msg)
