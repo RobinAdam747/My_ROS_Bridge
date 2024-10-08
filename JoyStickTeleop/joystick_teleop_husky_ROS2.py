@@ -34,7 +34,7 @@ class JoyMessageForwarder(Node):
     def topic_exists(self, topic_name):
         topic_list = self.get_topic_names_and_types()
         for topic in topic_list:
-            if topic_name in topic:
+            if topic_name == topic[0]:  # Check if topic_name exactly matches the topic name
                 return True
         return False
 
