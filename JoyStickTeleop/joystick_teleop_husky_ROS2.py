@@ -8,15 +8,15 @@ class JoyMessageForwarder(Node):
         super().__init__('joy_message_forwarder')
 
         # Check if the source topic exists
-        self.wait_for_topic('/joy')
+        # self.wait_for_topic('/joy')
 
         # Check if the destination topic exists
-        self.wait_for_topic('/a200_1057/joy_teleop/joy')
+        # self.wait_for_topic('/a200_1057/joy_teleop/joy')
 
         # Add a delay before starting the subscriber and publisher
-        delay_seconds = 5  # Set the delay time in seconds
-        self.get_logger().info(f'Delaying for {delay_seconds} seconds before starting...')
-        time.sleep(delay_seconds)
+        # delay_seconds = 5  # Set the delay time in seconds
+        # self.get_logger().info(f'Delaying for {delay_seconds} seconds before starting...')
+        # time.sleep(delay_seconds)
 
         # Create the subscription after ensuring the source topic exists
         self.subscription = self.create_subscription(
